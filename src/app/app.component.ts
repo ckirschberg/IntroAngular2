@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
+import {ToDoComponent} from "./todo.component";
 
 @Component({
   moduleId: module.id,
+  directives: [ToDoComponent],
   selector: 'app-root',
-  templateUrl: 'app.component.html',
+  template: `
+    {{title}}
+    <todo-list></todo-list>
+  `,
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'app still works!';
 }
