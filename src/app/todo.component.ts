@@ -14,9 +14,9 @@ import { Component } from '@angular/core';
 
     <div class="panel">
       <div class="input-group">
-        <input class="form-control" />
+        <input class="form-control" [(ngModel)]="todoText" />
         <span class="input-group-btn">
-          <button class="btn btn-default">Add</button>
+          <button class="btn btn-default" (click)="onAddTodo(todoText)" >Add</button>
         </span>
       </div>
     </div>
@@ -43,6 +43,12 @@ import { Component } from '@angular/core';
 })
 
 export class ToDoComponent {
+
+  public onAddTodo(text) {
+    this.model.items.push( {action: text, done: false} );
+    
+    console.log(text);
+  }
 
   public warningLevel() : string {
     return this.incompleteItems() < 3 ? "label-success" : "label-warning";
