@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   <div class="page-header">
       <h1>
         {{ model.user }}'s To Do List
-        <span class="label label-default" [ngClass]="warningLevel()">
+        <span class="label label-default" [ngClass]="warningLevel()"
+          *ngIf="incompleteItems() > 0">
+
           {{incompleteItems()}}
         </span>
       </h1>
@@ -30,10 +32,10 @@ import { Component } from '@angular/core';
       </thead>
 
       <tbody>
-        <tr *ngFor="let item of model.items">
-          <td>{{item.action}}</td>
+        <tr *ngFor="let item of modelMovie.movies">
+          <td>{{item.title}}</td>
           <td>
-            <input type="checkbox" [(ngModel)]="item.done" />
+            {{item.productionYear}}
           </td>
         </tr>
 
@@ -46,8 +48,8 @@ export class ToDoComponent {
 
   public onAddTodo(text) {
     this.model.items.push( {action: text, done: false} );
-    
-    console.log(text);
+
+    //console.log(text);
   }
 
   public warningLevel() : string {
@@ -72,6 +74,23 @@ export class ToDoComponent {
       { action: 'Learn Angular2', done: false },
       { action: 'Learn .NET', done: false },
       { action: 'Learn 3rd semester computer science', done: true },
+    ]
+  };
+
+
+  public modelMovie = {
+    name: 'Christian',
+    movies: [
+      { title: 'What women want', productionYear: '1999',
+        actors: [
+          {name: 'Mel Gibson', birthYear: '1967'},
+          {name: 'Helen Hunt', birthYear: '1970'}]
+      },
+      { title: 'Die Hard', productionYear: '2000',
+        actors: [
+          {name: 'Bruce Willis', birthYear: '1968'},
+          {name: 'Someone else', birthYear: '1975'}]
+      }
     ]
   };
 }
